@@ -46,7 +46,7 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const fk=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const lunes=o=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7)+o*7);return d};
 const defHor=s=>Object.fromEntries(Object.entries(SEDES[s].h).flatMap(([d,hs])=>hs.map(h=>[d+" "+hh(h),CUPO])));
-const hmap=()=>HD.h||defHor(S),PL=()=>HD.pl||PL(),DIR=()=>HD.dir||DIR();
+const hmap=()=>HD.h||defHor(S),PL=()=>HD.pl||SEDES[S].pl,DIR=()=>HD.dir||SEDES[S].n;
 const slots=()=>Object.keys(hmap()).sort((a,b)=>DIAS.indexOf(a.split(" ")[0])-DIAS.indexOf(b.split(" ")[0])||a.localeCompare(b));
 const horas=()=>[...new Set(Object.keys(hmap()).map(k=>+k.split(" ")[1].slice(0,2)))].sort((a,b)=>a-b);
 let CM=0,cfg={},HD={},HL=0,S=null,T="agenda",W=0,alum=[],res=[],pros=[],un=[],ag=null;
